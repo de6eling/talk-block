@@ -18,12 +18,42 @@
         }
 
         #welcomeTitle h1, #welcomeTitle p {
+            color: white;
             position: relative;
             top: 40%;
         }
 
-        .hidden {
-            display: none;
+
+        * { box-sizing: border-box; }
+        .video-background {
+            background: #000;
+            position: fixed;
+            top: 0; right: 0; bottom: 0; left: 0;
+            z-index: -99;
+        }
+        .video-foreground,
+        .video-background iframe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height:100%;
+            pointer-events: none;
+        }
+
+        .container {
+            padding-top: 25px;
+        }
+
+        .main{
+            background: #FFFFFF;
+            position: relative;
+            z-index: 3;
+        }
+
+        .main-raised{
+            margin: -60px 30px 0px;
+            border-radius: 10px;
         }
     </style>
 
@@ -32,7 +62,7 @@
     <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded fixed-top">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -40,113 +70,32 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="./index.html">Home<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link" href="./blocks.html">Blocks</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./about.html">About</a>
             </li>
         </ul>
     </div>
 </nav>
-<div class="container">
-    <section id="welcomeTitle" class="text-center">
-        <h1>Welcome to the Talk Block</h1>
-        <p>Find new friends and feel healthier and happier!</p>
-    </section>
-    <section id="blockSelect">
-        <div class="row">
-            <h3>What block are you on?</h3>
-            <select name="" id="placeSelect" class="form-control">
-                <option value="cougarEar">Cougar Eat</option>
-                <option value="pendulumCourt">Pendulum Court</option>
-                <option value="moaCafe">Moa Cafe</option>
-            </select>
-        </div>
-    </section>
-    <section id="blockTable">
-        <div class="row">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Table #</th>
-                    <th>Name</th>
-                    <th>Ice Breaker</th>
-                    <th>Time Remaining</th>
-                </tr>
-                </thead>
-                <tbody id="cougarEar" class="place">
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                </tr>
-                </tbody>
-                <tbody id="pendulumCourt" class="place hidden">
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Drew</td>
-                    <td>Anything</td>
-                    <td>10 min</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Anna</td>
-                    <td>Brandon Sanderson</td>
-                    <td>15 min</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>Bird Watching</td>
-                    <td>20 min</td>
-                </tr>
-                </tbody>
-                <tbody id="moaCafe" class="place hidden">
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Drew</td>
-                    <td>Anything</td>
-                    <td>10 min</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Anna</td>
-                    <td>Brandon Sanderson</td>
-                    <td>15 min</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>Bird Watching</td>
-                    <td>20 min</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
+<div class="video-background">
+    <div class="video-foreground">
+        <iframe src="https://www.youtube.com/embed/CZvWQXK_PAg?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&playlist=CZvWQXK_PAg" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
+<section id="welcomeTitle" class="text-center">
+    <h1>Welcome to the Talk Block</h1>
+    <p>Find new friends and feel healthier and happier!</p>
+</section>
+<div class="main main-raised">
+    <div class="container">
 
+    </div>
 </div>
 
-<script>
-    $('#placeSelect').on('change', function () {
-        let id = $(this).val();
-        $('.place').addClass('hidden');
-        $('#' + id).removeClass('hidden');
-    });
-</script>
 
 </body>
 </html>
