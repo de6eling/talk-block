@@ -16,13 +16,13 @@ body {
 * { box-sizing: border-box; }
 .video-background,
 .static-background{
-    background: #000;
+    background: #dadada;
     position: fixed;
     top: 0; right: 0; bottom: 0; left: 0;
     z-index: -99;
 }
 
-.static-background,
+.static-background ,
 .video-foreground,
 .video-background iframe {
     position: fixed;
