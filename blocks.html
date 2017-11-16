@@ -64,39 +64,8 @@
                     <th>Join</th>
                 </tr>
                 </thead>
-                <tbody id="cougarEar" class="place">
-                <tr id="block-1">
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>What about this weather?</td>
-                    <td>7 min</td>
-                    <td><!-- Button trigger modal -->
-                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal">
-                            <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
-                        </button>
-                    </td>
-                </tr>
-                <tr id="block-2">
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>I actually love Monday's</td>
-                    <td>25 min</td>
-                    <td><buttom class="btn btn-sm btn-primary"><i class="fa fa-pencil fa-fw" aria-hidden="true" data-toggle="modal" data-target="#myModal"></i></buttom></td>
-                </tr>
-                <tr id="block-3">
-                    <th scope="row">3</th>
-                    <td>Jane</td>
-                    <td>I am an avid bird watcher</td>
-                    <td>17min</td>
-                    <td><buttom class="btn btn-sm btn-primary"><i class="fa fa-pencil fa-fw" aria-hidden="true" data-toggle="modal" data-target="#myModal"></i></buttom></td>
-                </tr>
-                <tr id="block-4">
-                    <th scope="row">4</th>
-                    <td>Susan</td>
-                    <td>I you had to choose between chocolate or gummy bears..</td>
-                    <td>12min</td>
-                    <td><buttom class="btn btn-sm btn-primary"><i class="fa fa-pencil fa-fw" aria-hidden="true" data-toggle="modal" data-target="#myModal"></i></buttom></td>
-                </tr>
+                <tbody class="place">
+
                 </tbody>
             </table>
         </div>
@@ -116,34 +85,37 @@
                 </button>
             </div>
             <div class="modal-body" id="blockModalBody">
-                <div class="form-group">
-                    <h3>Block </h3>
-                </div>
-                <div class="form-group">
-                    <label for="name">What's your name or nickname?</label>
-                    <input type="text" id="name" class="form-control" placeholder="ex. Dan the man">
-                </div>
-                <div class="form-group">
-                    <label for="iceBreaker">Ice Breaker, you need to start somewhere.</label>
-                    <input list="iceBreakers" id="iceBreaker" class="form-control" placeholder="ex. Why eat here?">
-                    <datalist id="iceBreakers">
-                        <option value="What three words best describe you?">
-                        <option value="What movie would be greatly improved if it was made into a musical?">
-                        <option value="If your five-year-old self suddenly found themselves inhabiting your current body, what would your five-year-old self do first?">
-                        <option value="What is something that everyone looks stupid doing?">
-                        <option value="What is your favorite class?">
-                    </datalist>
-                </div>
-                <div class="form-group">
-                    <label for="time">How long will you be here?</label>
-                    <select class="form-control" id="time">
-                        <option>5 min</option>
-                        <option>10 min</option>
-                        <option>15 min</option>
-                        <option>20 min</option>
-                        <option>30 min</option>
-                    </select>
-                </div>
+                <form action="#">
+                    <div class="form-group">
+                        <h3>Block </h3>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">What's your name or nickname?</label>
+                        <input type="text" id="name" class="form-control" placeholder="ex. Dan the man" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="iceBreaker">Ice Breaker, you need to start somewhere.</label>
+                        <input list="iceBreakers" id="iceBreaker" class="form-control" placeholder="ex. Why eat here?" required>
+                        <datalist id="iceBreakers">
+                            <option value="What three words best describe you?">
+                            <option value="What movie would be greatly improved if it was made into a musical?">
+                            <option value="If your five-year-old self suddenly found themselves inhabiting your current body, what would your five-year-old self do first?">
+                            <option value="What is something that everyone looks stupid doing?">
+                            <option value="What is your favorite class?">
+                        </datalist>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">How long will you be here?</label>
+                        <select class="form-control" id="time">
+                            <option>5 min</option>
+                            <option>10 min</option>
+                            <option>15 min</option>
+                            <option>20 min</option>
+                            <option>30 min</option>
+                        </select>
+                    </div>
+                </form>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" id="blockModalBtn" data-block="">Post table</button>
@@ -267,7 +239,7 @@
                     <td>${blk.name}</td>
                     <td>${blk.iceBreaker}</td>
                     <td>${blk.time}</td>
-                    <td><buttom class="btn btn-sm btn-primary"><i class="fa fa-pencil fa-fw" aria-hidden="true" data-toggle="modal" data-target="#myModal"></i></buttom></td>
+                    <td><buttom class="btn btn-sm btn-primary editBlock" data-block="${blk.blockNum}"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i></buttom></td>
                 </tr>
             `;
         });
@@ -287,6 +259,18 @@
             $("#myModal").modal();
         }
 
+    });
+
+    $(document).on('click', '.editBlock', function () {
+        let block = blocks[0].find(function (bkl) {
+            return bkl.blockNum = $(this).data('block');
+        });
+
+        $('#name').val(block.name);
+        $('#iceBreaker').val(block.iceBreaker);
+        $('#time').val(block.time);
+
+        $('#myModal').modal('toggle');
     });
 
     $('#blockModalBtn').on('click', function () {
