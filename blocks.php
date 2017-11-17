@@ -17,6 +17,13 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/tether.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    
+    <?php
+    $db = mysqli_connect('localhost','block_head','iamablockhead','talk_block')
+    or die('Error connecting to MySQL server.');
+    echo $db;
+    ?>
+    
 </head>
 <body>
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
